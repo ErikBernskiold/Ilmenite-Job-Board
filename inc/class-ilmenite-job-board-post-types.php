@@ -17,7 +17,12 @@ class Ilmenite_Job_Board_Post_Types {
 
 		// Load the post type
 		add_action( 'init', array( $this, 'register_post_type' ) );
+
+		// Add the custom post status
 		add_action( 'init', array( $this, 'register_status' ) );
+
+		// Hook intro cron job to check for expired jobs hourly
+		add_action( 'il_job_board_check_for_expired_jobs', array( $this, 'expire_jobs' ) );
 
 	}
 
@@ -105,5 +110,37 @@ class Ilmenite_Job_Board_Post_Types {
 
 	}
 
+	/**
+	 * Expire Jobs
+	 *
+	 * Set job status to expired when expiry date has passed
+	 */
+	public function expire_jobs() {
+
+		global $wpdb;
+
+		// Get all job IDs which have expired
+		$job_ids = $wpdb->get_col( $wpdb->prepare( "
+			SELECT postmeta.post_id FROM {$wpdb->postmeta} as postmeta
+			LEFT JOIN {$wpdb->posts} as posts ON postmeta.post_id = posts.ID
+			WHERE postmeta.meta_key = 'iljb_expiry_date'
+			AND postmeta.meta_value > 0
+			AND postmeta.meta_value < %s
+			AND posts.post_status = 'publish'
+			AND posts.post_type = 'il_job_board'
+		" ), current_time( 'mysql' ) );
+
+		// If we have expired posts, set their status to expired.
+		if ( $job_ids ) {
+			foreach ( $job_ids as $job_id ) {
+				$job_data = array();
+				$job_data['ID'] = $job_id;
+				$job_data['post_status'] = 'expired';
+
+				wp_update_post( $job_data );
+			}
+		}
+
+	}
 
 }
