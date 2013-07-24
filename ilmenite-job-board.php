@@ -30,6 +30,14 @@ class Ilmenite_Job_Board {
 		define( 'IL_JOB_BOARD_PLUGIN_DIR', untrailingslashit( plugin_dir_path( __FILE__ ) ) );
 		define( 'IL_JOB_BOARD_PLUGIN_URL', untrailingslashit( plugins_url( basename( plugin_dir_path( __FILE__ ) ), basename( __FILE__ ) ) ) );
 
+		// Include classes and functions
+		include( 'ilmenite-job-board-functions.php' );
+
+		include( 'inc/class-ilmenite-job-board-post-types.php' );
+
+		// Initialize classes...
+		$this->post_types = new Ilmenite_Job_Board_Post_Types();
+
 		// Add the textdomain and support translation
 		add_action( 'plugins_loaded', array( $this, 'add_textdomain' ) );
 
