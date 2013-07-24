@@ -24,6 +24,10 @@ class Ilmenite_Job_Board_Post_Types {
 		// Hook intro cron job to check for expired jobs hourly
 		add_action( 'il_job_board_check_for_expired_jobs', array( $this, 'expire_jobs' ) );
 
+		// Run these at activation...
+		register_activation_hook( basename( dirname( __FILE__ ) ) . '/' . basename( __FILE__ ), create_function( "", "include( 'includes/class-ilmenite-job-board-install.php' );" ), 10 );
+		register_activation_hook( basename( dirname( __FILE__ ) ) . '/' . basename( __FILE__ ), 'flush_rewrite_rules', 15 );
+
 	}
 
 	/**
