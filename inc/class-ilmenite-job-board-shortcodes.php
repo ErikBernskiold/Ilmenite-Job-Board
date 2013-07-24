@@ -36,13 +36,13 @@ class Ilmenite_Job_Board_Shortcodes {
 			'order'               => $order,
 			'ignore_sticky_posts' => 1,
 			'post_status'         => 'publish',
-/*			'meta_query' 			 => array(
+			'meta_query' 			 => array(
 				array(
-					'key'     => 'il_job_board_filled',
+					'key'     => 'iljb_filled',
 					'value'   => 1,
 					'compare' => '!=',
 				),
-			),*/
+			),
 		);
 
 		$jobs = new WP_Query( $jobs_args );
@@ -53,7 +53,24 @@ class Ilmenite_Job_Board_Shortcodes {
 
 				<?php while ( $jobs->have_posts() ) : $jobs->the_post(); ?>
 
-					<li><?php the_title(); ?></li>
+					<li>
+						<ul>
+							<li class="jobs-company-logo">
+								Logo
+							</li>
+							<li class="jobs-position-info">
+								<span class="jobs-company-name">Company Name Here</span>
+								<span class="jobs-position-title"><?php the_title(); ?></span>
+							</li>
+							<li class="jobs-location">
+								Location
+							</li>
+							<li class="jobs-meta">
+								<span class="jobs-job-type job-type-part-time">Part Time</span>
+								<span class="jobs-expiry-date">Apply by: Nov 5, 2013</span>
+							</li>
+						</ul>
+					</li>
 
 				<?php endwhile; ?>
 
