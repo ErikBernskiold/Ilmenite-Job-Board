@@ -60,14 +60,14 @@ class Ilmenite_Job_Board {
 
 			$config = array(
 				'slug'               => plugin_basename( __FILE__ ),
-				'proper_folder_name' => 'ilmenite-slider',
-				'api_url'            => 'https://api.github.com/repos/xldstudios/ilmenite-slider',
-				'raw_url'            => 'https://raw.github.com/xldstudios/ilmenite-slider/master',
-				'github_url'         => 'https://github.com/xldstudios/ilmenite-slider',
-				'zip_url'            => 'https://github.com/xldstudios/ilmenite-slider/archive/master.zip',
+				'proper_folder_name' => 'ilmenite-job-board',
+				'api_url'            => 'https://api.github.com/repos/ErikBernskiold/Ilmenite-Job-Board',
+				'raw_url'            => 'https://raw.github.com/ErikBernskiold/Ilmenite-Job-Board/master',
+				'github_url'         => 'https://github.com/ErikBernskiold/Ilmenite-Job-Board',
+				'zip_url'            => 'https://github.com/ErikBernskiold/Ilmenite-Job-Board/archive/master.zip',
 				'sslverify'          => true,
-				'requires'           => '3.0',
-				'tested'             => '3.6',
+				'requires'           => '3.5',
+				'tested'             => '3.5.2',
 				'readme'             => 'README.md',
 			);
 
