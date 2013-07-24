@@ -34,6 +34,7 @@ class Ilmenite_Job_Board {
 		include( 'ilmenite-job-board-functions.php' );
 
 		include( 'inc/class-ilmenite-job-board-post-types.php' );
+		include( 'inc/class-ilmenite-job-board-shortcodes.php' );
 
 		// Initialize classes...
 		$this->post_types = new Ilmenite_Job_Board_Post_Types();
