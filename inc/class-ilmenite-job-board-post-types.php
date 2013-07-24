@@ -17,6 +17,7 @@ class Ilmenite_Job_Board_Post_Types {
 
 		// Load the post type
 		add_action( 'init', array( $this, 'register_post_type' ) );
+		add_action( 'init', array( $this, 'register_status' ) );
 
 	}
 
@@ -79,6 +80,13 @@ class Ilmenite_Job_Board_Post_Types {
 //			'has_archive'         => _x( 'jobs', 'post type archive slug', 'iljobboard' ),
 			'show_in_nav_menus'   => false,
 		));
+
+	}
+
+	/**
+	 * Register Post Status
+	 */
+	public function register_status() {
 
 		/**
 		 * Custom Post Status: Expired
