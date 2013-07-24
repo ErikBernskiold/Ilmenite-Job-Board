@@ -40,6 +40,10 @@ class Ilmenite_Job_Board {
 		// Initialize classes...
 		$this->post_types = new Ilmenite_Job_Board_Post_Types();
 
+		// Run these at activation...
+		register_activation_hook( basename( dirname( __FILE__ ) ) . '/' . basename( __FILE__ ), create_function( "", "include( 'includes/class-ilmenite-job-board-install.php' );" ), 10 );
+		register_activation_hook( basename( dirname( __FILE__ ) ) . '/' . basename( __FILE__ ), 'flush_rewrite_rules', 15 );
+
 		// Add the textdomain and support translation
 		add_action( 'plugins_loaded', array( $this, 'add_textdomain' ) );
 
