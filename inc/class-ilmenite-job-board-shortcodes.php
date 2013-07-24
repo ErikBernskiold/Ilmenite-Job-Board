@@ -60,7 +60,7 @@ class Ilmenite_Job_Board_Shortcodes {
 							</li>
 							<li class="jobs-position-info">
 								<span class="jobs-company-name"><?php echo get_user_meta( get_the_author_meta( 'ID' ), 'company_name', true ); ?></span>
-								<span class="jobs-position-title"><?php the_title(); ?></span>
+								<span class="jobs-position-title"><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></span>
 							</li>
 							<li class="jobs-location">
 								<?php echo get_post_meta( get_the_ID(), 'iljb_location', true ); ?>
