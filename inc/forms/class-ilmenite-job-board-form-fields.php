@@ -124,9 +124,17 @@ class Ilmenite_Job_Board_Form_Fields {
 	 */
 	private function field_select() {
 
-		$text_field = '<textarea id="' . $this->id . '" name="' . $this->id . '" placeholder="' . $this->placeholder . '"></textarea>';
+		$select = '<select id="' . $this->id . '" name="' . $this->id . '">';
 
-		$output = $this->field_label() . $text_field;
+		$select .= '<option selected="selected" disabled="disabled">' . __( 'Please select...', 'iljobboard' ) . '</option>';
+
+		foreach( $this->options as $option ) {
+			$select .= '<option value="' . $option->term_id . '">' . $option->name . '</option>';
+		}
+
+		$select .= '</select>';
+
+		$output = $this->field_label() . $select;
 
 		return $output;
 
