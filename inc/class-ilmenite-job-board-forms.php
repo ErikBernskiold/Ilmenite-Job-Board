@@ -18,6 +18,8 @@ class Ilmenite_Job_Board_Forms {
 
 	public function submit_form() {
 
+		global $current_user;
+
 		// Stop the display here if the user isn't logged in.
 		if ( ! is_user_logged_in() )
 			return iljb_get_message( 'error', __( 'You must be logged in to submit a new job.', 'iljobboard' ) );
@@ -41,6 +43,7 @@ class Ilmenite_Job_Board_Forms {
 			} else {
 				self::save_job( $values['job']['job_title'], $values['job']['job_description'] );
 				self::update_job_meta( $values );
+				update_post_meta( self::$job_id, 'iljb_company_id', $_POST['company_id'] );
 
 				echo iljb_get_message( 'success', __( 'Your job listing has been successfully submitted to us.', 'iljobboard' ) );
 
@@ -413,8 +416,6 @@ class Ilmenite_Job_Board_Forms {
 		wp_set_object_terms( self::$job_id, array( $values['job']['job_hours'] ), 'iljb_job_hours', false );
 
 		// Go through all of the fields here...
-		update_post_meta( self::$job_id, 'iljb_company_id', $_POST['company_id'] );
-		update_post_meta( self::$job_id, 'iljb_company_id', $values['job']['company_id'] );
 		update_post_meta( self::$job_id, 'iljb_expiry_date', $values['job']['expiry_date'] );
 		update_post_meta( self::$job_id, 'iljb_start_date', $values['job']['start_date'] );
 		update_post_meta( self::$job_id, 'iljb_salary', $values['job']['salary'] );
