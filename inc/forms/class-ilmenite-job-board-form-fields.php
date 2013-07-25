@@ -107,9 +107,12 @@ class Ilmenite_Job_Board_Form_Fields {
 
 		wp_editor( '', $this->id, array(
 			'media_buttons' => false,
-			'textarea_rows' => 5,
+			'textarea_rows' => 8,
 			'teeny' => true,
 			'quicktags' => false,
+			'tinymce' => array(
+				'theme_advanced_buttons1' => 'formatselect,|,bold,italic,underline',
+			),
 		) );
 
 		return ob_get_clean();
