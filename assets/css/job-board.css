@@ -1,0 +1,75 @@
+/**
+ * Ilmenite Job Board
+ * Stylesheet
+ */
+
+/* Job Listing */
+.job-listing {}
+
+	.job-listing ul {
+		maring: 0;
+		padding: 0;
+	}
+
+		.job-listing ul li {
+			list-style: none;
+			margin: 0 0 1.5em 0;
+			padding: 0 0 1em 0;
+			border-bottom: 1px solid #ddd;
+		}
+
+			.job-listing li ul {
+				margin: 0;
+				padding: 0;
+			}
+
+				.job-listing li li {
+					display: inline-block;
+					vertical-align: top;
+					padding: 0;
+					margin: 0;
+					border: none;
+				}
+
+	/* Job Listing: Columns */
+	.jobs-company-logo {
+		width: 15%;
+	}
+
+	.jobs-position-info {
+		width: 43%;
+	}
+
+		.jobs-company-name {
+			display: block;
+		}
+
+		.jobs-position-title {
+			display: block;
+			font-weight: bold;
+			font-size: 120%;
+		}
+
+	.jobs-location {
+		width: 20%;
+		vertical-align: middle !important;
+	}
+
+	.jobs-meta {
+		width: 20%;
+		text-align: right;
+	}
+
+		.jobs-job-type {
+			display: block;
+			font-weight: bold;
+		}
+
+			.job-type-part-time { color: orange; }
+			.job-type-full-time { color: green; }
+
+		.jobs-expiry-date {
+			display: block;
+			color: #888;
+			font-size: 90%;
+		}

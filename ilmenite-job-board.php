@@ -49,6 +49,9 @@ class Ilmenite_Job_Board {
 		// Add the textdomain and support translation
 		add_action( 'plugins_loaded', array( $this, 'add_textdomain' ) );
 
+		// Add Stylesheets
+		add_action( 'wp_enqueue_scripts', array( $this, 'stylesheets' ) );
+
 		// Add plugin updater
 		add_action( 'init', array( $this, 'plugin_update' ) );
 	}
@@ -90,6 +93,17 @@ class Ilmenite_Job_Board {
 			new WP_GitHub_Updater( $config );
 
 		}
+
+	}
+
+	/**
+	 * Load Styles
+	 */
+	public function stylesheets() {
+
+		wp_register_style( 'job-board', IL_JOB_BOARD_PLUGIN_URL . '/assets/css/job-board.css' );
+
+		wp_enqueue_style( 'job-board' );
 
 	}
 
