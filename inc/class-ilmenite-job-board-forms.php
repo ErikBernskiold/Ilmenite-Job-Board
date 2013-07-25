@@ -12,7 +12,7 @@ class Ilmenite_Job_Board_Forms {
 
 	public function __construct() {
 
-		$this->form_fields();
+		add_action( 'init', array( $this, 'form_fields' ) );
 
 	}
 
