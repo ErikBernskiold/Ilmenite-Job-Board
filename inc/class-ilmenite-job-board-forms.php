@@ -184,7 +184,7 @@ class Ilmenite_Job_Board_Forms {
 						'In person'
 					),
 				),
-				'share_posting' => array(
+				'share_listing' => array(
 					'label'       => __( 'Would you like the posting shared with other employment services in the region?', 'iljobboard' ),
 					'type'        => 'truefalse',
 					'required'    => false,
@@ -288,6 +288,10 @@ class Ilmenite_Job_Board_Forms {
 							$values[ $group_key ][ $key ] = wp_kses_post( trim( $values[ $group_key ][ $key ] ) );
 						break;
 
+					case 'wysiwyg':
+							$values[ $group_key ][ $key ] = wp_kses_post( trim( $values[ $group_key ][ $key ] ) );
+						break;
+
 					default:
 							$values[ $group_key ][ $key ] = sanitize_text_field( $values[ $group_key ][ $key ] );
 						break;
@@ -387,15 +391,14 @@ class Ilmenite_Job_Board_Forms {
 		wp_set_object_terms( self::$job_id, array( $values['job']['job_type'] ), 'iljb_job_type', false );
 
 		// Go through all of the fields here...
-		update_post_meta( self::$job_id, 'iljb_company_id', $values['job']['iljb_company_id'] );
-		update_post_meta( self::$job_id, 'iljb_expiry_date', $values['job']['iljb_expiry_date'] );
-		update_post_meta( self::$job_id, 'iljb_start_date', $values['job']['iljb_start_date'] );
-		update_post_meta( self::$job_id, 'iljb_salary', $values['job']['iljb_salary'] );
-		update_post_meta( self::$job_id, 'iljb_location', $values['job']['iljb_location'] );
-		update_post_meta( self::$job_id, 'iljb_qualifications', $values['job']['iljb_qualifications'] );
-		update_post_meta( self::$job_id, 'iljb_how_to_apply', $values['job']['iljb_how_to_apply'] );
-		update_post_meta( self::$job_id, 'iljb_share_listing', $values['job']['iljb_share_listing'] );
-		update_post_meta( self::$job_id, 'iljb_filled', $values['job']['iljb_filled'] );
+		update_post_meta( self::$job_id, 'iljb_company_id', $values['job']['company_id'] );
+		update_post_meta( self::$job_id, 'iljb_expiry_date', $values['job']['expiry_date'] );
+		update_post_meta( self::$job_id, 'iljb_start_date', $values['job']['start_date'] );
+		update_post_meta( self::$job_id, 'iljb_salary', $values['job']['salary'] );
+		update_post_meta( self::$job_id, 'iljb_location', $values['job']['location'] );
+		update_post_meta( self::$job_id, 'iljb_qualifications', $values['job']['qualifications'] );
+		update_post_meta( self::$job_id, 'iljb_how_to_apply', $values['job']['how_to_apply'] );
+		update_post_meta( self::$job_id, 'iljb_share_listing', $values['job']['share_listing'] );
 
 	}
 
