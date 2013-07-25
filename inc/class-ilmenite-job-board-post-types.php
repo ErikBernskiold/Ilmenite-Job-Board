@@ -18,6 +18,9 @@ class Ilmenite_Job_Board_Post_Types {
 		// Load the post type
 		add_action( 'init', array( $this, 'register_post_type' ) );
 
+		// Load Taxonomies
+		add_action( 'init', array( $this, 'register_taxonomies' ) );
+
 		// Add the custom post status
 		add_action( 'init', array( $this, 'register_status' ) );
 
@@ -84,6 +87,100 @@ class Ilmenite_Job_Board_Post_Types {
 			'has_archive'		    => false,
 //			'has_archive'         => _x( 'jobs', 'post type archive slug', 'iljobboard' ),
 			'show_in_nav_menus'   => false,
+		));
+
+	}
+
+	/**
+	 * Register Taxonomies
+	 */
+	public function register_taxonomies() {
+
+		/**
+		 * Taxonomy: Job Type
+		 */
+		$job_type_singular = __( 'Job Type', 'iljobboard' );
+		$job_type_plural = __( 'Job Types', 'iljobboard' );
+
+		register_taxonomy( 'iljb_job_type', 'il_job_board' , array(
+			'labels'            => array(
+				'name'          => $job_type_plural,
+				'singular_name' => $job_type_singular,
+				'menu_name'     => $job_type_plural,
+				'all_items'     => sprintf( __( 'All %s', 'iljobboard' ), $job_type_plural ),
+				'edit_item'     => sprintf( __( 'Edit %s', 'iljobboard' ), $job_type_singular ),
+				'view_item'     => sprintf( __( 'View %s', 'iljobboard' ), $job_type_singular ),
+				'update_item'   => sprintf( __( 'Update %s', 'iljobboard' ), $job_type_singular ),
+				'add_new_item'  => sprintf( __( 'Add New %s', 'iljobboard' ), $job_type_singular ),
+				'new_item_name' => sprintf( __( 'New %s Name', 'iljobboard' ), $job_type_singular ),
+				'parent_item'   => sprintf( __( 'Parent %s', 'iljobboard' ), $job_type_singular ),
+				'search_items'  => sprintf( __( 'Search %s', 'iljobboard' ), $job_type_plural ),
+				'popular_items' => sprintf( __( 'Popular %s', 'iljobboard' ), $job_type_plural ),
+			),
+			'public'            => true,
+			'show_ui'           => true,
+			'show_tagcloud'     => false,
+			'show_admin_column' => true,
+			'hierarchical'      => true,
+			'rewrite'           => false,
+		));
+
+		/**
+		 * Taxonomy: Job Status
+		 */
+		$job_status_singular = __( 'Job Status', 'iljobboard' );
+		$job_status_plural = __( 'Job Statuses', 'iljobboard' );
+
+		register_taxonomy( 'iljb_job_status', 'il_job_board' , array(
+			'labels'            => array(
+				'name'          => $job_status_plural,
+				'singular_name' => $job_status_singular,
+				'menu_name'     => $job_status_plural,
+				'all_items'     => sprintf( __( 'All %s', 'iljobboard' ), $job_status_plural ),
+				'edit_item'     => sprintf( __( 'Edit %s', 'iljobboard' ), $job_status_singular ),
+				'view_item'     => sprintf( __( 'View %s', 'iljobboard' ), $job_status_singular ),
+				'update_item'   => sprintf( __( 'Update %s', 'iljobboard' ), $job_status_singular ),
+				'add_new_item'  => sprintf( __( 'Add New %s', 'iljobboard' ), $job_status_singular ),
+				'new_item_name' => sprintf( __( 'New %s Name', 'iljobboard' ), $job_status_singular ),
+				'parent_item'   => sprintf( __( 'Parent %s', 'iljobboard' ), $job_status_singular ),
+				'search_items'  => sprintf( __( 'Search %s', 'iljobboard' ), $job_status_plural ),
+				'popular_items' => sprintf( __( 'Popular %s', 'iljobboard' ), $job_status_plural ),
+			),
+			'public'            => true,
+			'show_ui'           => true,
+			'show_tagcloud'     => false,
+			'show_admin_column' => true,
+			'hierarchical'      => true,
+			'rewrite'           => false,
+		));
+
+		/**
+		 * Taxonomy: Hours of Work
+		 */
+		$job_hours_singular = __( 'Job Hour', 'iljobboard' );
+		$job_hours_plural = __( 'Job Hours', 'iljobboard' );
+
+		register_taxonomy( 'iljb_job_hours', 'il_job_board' , array(
+			'labels'            => array(
+				'name'          => $job_hours_plural,
+				'singular_name' => $job_hours_singular,
+				'menu_name'     => $job_hours_plural,
+				'all_items'     => sprintf( __( 'All %s', 'iljobboard' ), $job_hours_plural ),
+				'edit_item'     => sprintf( __( 'Edit %s', 'iljobboard' ), $job_hours_singular ),
+				'view_item'     => sprintf( __( 'View %s', 'iljobboard' ), $job_hours_singular ),
+				'update_item'   => sprintf( __( 'Update %s', 'iljobboard' ), $job_hours_singular ),
+				'add_new_item'  => sprintf( __( 'Add New %s', 'iljobboard' ), $job_hours_singular ),
+				'new_item_name' => sprintf( __( 'New %s Name', 'iljobboard' ), $job_hours_singular ),
+				'parent_item'   => sprintf( __( 'Parent %s', 'iljobboard' ), $job_hours_singular ),
+				'search_items'  => sprintf( __( 'Search %s', 'iljobboard' ), $job_hours_plural ),
+				'popular_items' => sprintf( __( 'Popular %s', 'iljobboard' ), $job_hours_plural ),
+			),
+			'public'            => true,
+			'show_ui'           => true,
+			'show_tagcloud'     => false,
+			'show_admin_column' => true,
+			'hierarchical'      => true,
+			'rewrite'           => false,
 		));
 
 	}
