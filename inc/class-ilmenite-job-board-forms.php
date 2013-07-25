@@ -134,7 +134,7 @@ class Ilmenite_Job_Board_Forms {
 					'placeholder' => '',
 					'priority'    => 25,
 					'description' => '',
-					'options'	  => false,
+					'options'	  => get_job_taxonomy( 'iljb_job_type' ),
 				),
 				'job_status' => array(
 					'label'       => __( 'Job Status', 'iljobboard' ),
@@ -143,7 +143,7 @@ class Ilmenite_Job_Board_Forms {
 					'placeholder' => '',
 					'priority'    => 30,
 					'description' => '',
-					'options'	  => false,
+					'options'	  => get_job_taxonomy( 'iljb_job_status' ),
 				),
 				'job_hours' => array(
 					'label'       => __( 'Hours of Work', 'iljobboard' ),
@@ -152,7 +152,7 @@ class Ilmenite_Job_Board_Forms {
 					'placeholder' => '',
 					'priority'    => 35,
 					'description' => '',
-					'options'	  => false,
+					'options'	  => get_job_taxonomy( 'iljb_job_hours' ),
 				),
 				'qualifications' => array(
 					'label'       => __( 'Qualifications', 'iljobboard' ),
