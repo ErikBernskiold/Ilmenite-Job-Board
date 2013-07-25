@@ -14,6 +14,9 @@ class Ilmenite_Job_Board_Shortcodes {
 		// Add jobs listing shortcode
 		add_shortcode( 'ilmenite_jobs', array( $this, 'jobs_listing' ) );
 
+		// Adds the job submission form shortcode
+		add_shortcode( 'ilmenite_submit_job', array( $this, 'submit_form' ) );
+
 	}
 
 	public function jobs_listing( $atts ) {
@@ -98,6 +101,19 @@ class Ilmenite_Job_Board_Shortcodes {
 			return iljb_get_message( 'error', __( 'You must be logged in to submit a new job.', 'iljobboard' ) );
 
 ?>
+
+		<form action="#" method="post">
+
+			<p>
+				<label for="job_title"><?php _e('Job Title', 'iljobboard'); ?></label>
+				<input type="text" name="job_title" id="job_title">
+			</p>
+
+			<div class="form-action">
+				<input type="submit" value="<?php _e('Submit Job', 'iljobboard'); ?>" class="button success">
+			</div>
+
+		</form>
 
 <?php
 
