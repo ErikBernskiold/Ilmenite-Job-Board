@@ -36,9 +36,11 @@ class Ilmenite_Job_Board {
 		include( 'inc/class-ilmenite-job-board-post-types.php' );
 		include( 'inc/class-ilmenite-job-board-shortcodes.php' );
 		include( 'inc/class-ilmenite-job-board-users.php' );
+		include( 'inc/class-ilmenite-job-board-forms.php' );
 
 		// Initialize classes...
 		$this->post_types = new Ilmenite_Job_Board_Post_Types();
+		$this->forms      = new Ilmenite_Job_Board_Forms();
 
 		// Run these at activation...
 		register_activation_hook( basename( dirname( __FILE__ ) ) . '/' . basename( __FILE__ ), create_function( "", "include( 'includes/class-ilmenite-job-board-install.php' );" ), 10 );

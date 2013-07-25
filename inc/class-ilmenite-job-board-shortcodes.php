@@ -94,31 +94,7 @@ class Ilmenite_Job_Board_Shortcodes {
 	 */
 	public function submit_form( $atts ) {
 
-		ob_start();
-
-		// Stop the display here if the user isn't logged in.
-		if ( ! is_user_logged_in() )
-			return iljb_get_message( 'error', __( 'You must be logged in to submit a new job.', 'iljobboard' ) );
-
-?>
-
-		<form action="#" method="post">
-
-			<p>
-				<label for="job_title"><?php _e('Job Title', 'iljobboard'); ?></label>
-				<input type="text" name="job_title" id="job_title">
-			</p>
-
-			<div class="form-action">
-				<input type="submit" value="<?php _e('Submit Job', 'iljobboard'); ?>" class="button success">
-			</div>
-
-		</form>
-
-<?php
-
-		// Return the output buffered content wrapped in a div
-		return '<div class="job-submission">' . ob_get_clean() . '</div>';
+		return $GLOBALS['ilmenite_job_board']->forms->submit_form();
 
 	}
 
