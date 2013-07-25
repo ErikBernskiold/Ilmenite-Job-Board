@@ -32,7 +32,7 @@ class Ilmenite_Job_Board_Form_Fields {
 		if( ! method_exists( $this, 'field_' . $this->type ) )
 			return;
 
-		return '<p>' . call_user_func( array( $this, 'field_' . $this->type ), $this->id, $this->label, $this->description, $this->placeholder, $this->required, $this->options, $this->edit ) . '</p>';
+		return '<div class="form-field-item">' . call_user_func( array( $this, 'field_' . $this->type ), $this->id, $this->label, $this->description, $this->placeholder, $this->required, $this->options, $this->edit ) . '</div>';
 
 	}
 
