@@ -24,7 +24,7 @@ class Ilmenite_Job_Board_Forms {
 
 		ob_start();
 
-		if ( $_POST['submitted'] ) {
+		if ( isset( $_POST['submitted'] ) ) {
 
 			$values = $this->get_form_post_data();
 
@@ -34,8 +34,8 @@ class Ilmenite_Job_Board_Forms {
 				exit;
 
 			// Check if any form field doesn't validate
-			//} elseif ( is_wp_error( ( $return = self::validate_form_fields( $values ) ) ) ) {
-			//	echo iljb_get_message( 'error', $return->get_error_message() );
+			} elseif ( is_wp_error( ( $return = self::validate_form_fields( $values ) ) ) ) {
+				echo iljb_get_message( 'error', $return->get_error_message() );
 
 			// If we don't have any validation or nonce errors, let's submit the form.
 			} else {
@@ -88,7 +88,7 @@ class Ilmenite_Job_Board_Forms {
 				),
 				'expiry_date' => array(
 					'label'       => __( 'Expiry Date', 'iljobboard' ),
-					'type'        => 'text',
+					'type'        => 'date',
 					'required'    => true,
 					'placeholder' => date( 'Y-m-d' ),
 					'priority'    => 5,
@@ -160,7 +160,7 @@ class Ilmenite_Job_Board_Forms {
 				),
 				'job_description' => array(
 					'label'       => __( 'Job Description', 'iljobboard' ),
-					'type'        => 'textarea',
+					'type'        => 'wysiwyg',
 					'required'    => true,
 					'placeholder' => '',
 					'priority'    => 45,
