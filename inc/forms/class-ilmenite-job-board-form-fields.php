@@ -154,7 +154,7 @@ class Ilmenite_Job_Board_Form_Fields {
 	 */
 	private function field_truefalse() {
 
-		$checkbox = '<input type="checkbox" name="' . $this->id . '" id="' . $this->id . '"> <label for="' . $this->id . '" class="job-truefalse-label">' . $this->label . '</label>';
+		$checkbox = '<input type="checkbox" name="' . $this->id . '" id="' . $this->id . '" value="1"> <label for="' . $this->id . '" class="job-truefalse-label">' . $this->label . '</label>';
 
 		$output = $checkbox;
 
