@@ -62,15 +62,15 @@ class Ilmenite_Job_Board_Shortcodes {
 								Logo
 							</li>
 							<li class="jobs-position-info">
-								<span class="jobs-company-name"><?php echo get_user_meta( get_the_author_meta( 'ID' ), 'company_name', true ); ?></span>
 								<span class="jobs-position-title"><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></span>
+								<span class="jobs-company-name"><?php echo get_user_meta( get_the_author_meta( 'ID' ), 'company_name', true ); ?></span>
 							</li>
 							<li class="jobs-location">
 								<?php echo get_post_meta( get_the_ID(), 'iljb_location', true ); ?>
 							</li>
 							<li class="jobs-meta">
 								<span class="jobs-job-type job-type-part-time">Part Time</span>
-								<span class="jobs-expiry-date"><?php printf( __( 'Apply by %s', 'iljobboard' ), date( 'F j, Y', strtotime( get_post_meta( get_the_ID(), 'iljb_expiry_date', true ) ) ) ); ?></span>
+								<span class="jobs-expiry-date"><?php printf( __( 'Ends %s', 'iljobboard' ), date( 'F j, Y', strtotime( get_post_meta( get_the_ID(), 'iljb_expiry_date', true ) ) ) ); ?></span>
 							</li>
 						</ul>
 					</li>
