@@ -73,3 +73,15 @@
 			color: #888;
 			font-size: 90%;
 		}
+
+/* Job Submission Form */
+.job-submission-form {}
+
+.form-field-item {
+	margin: 0 0 1em 0;
+}
+
+.job-submit-label,
+.job-checkbox-group-label {
+	display: block;
+}
