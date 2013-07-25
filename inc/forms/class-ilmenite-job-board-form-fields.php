@@ -61,6 +61,29 @@ class Ilmenite_Job_Board_Form_Fields {
 	}
 
 	/**
+	 * Date Field
+	 */
+	private function field_date() {
+
+		// Make sure we have the jQuery UI Datepicker
+		wp_enqueue_script( 'jquery-ui-datepicker' );
+
+		// Send in the style for the jQuery Datepicker
+		wp_register_style('jquery-ui', 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css');
+		wp_enqueue_style( 'jquery-ui' );
+
+		// Add the datepicker code
+		add_action( 'wp_footer', array( $this, 'datepicker_code' ), 20 );
+
+		$text_field = '<input type="text" class="jquery-ui-datepicker" id="' . $this->id . '" name="' . $this->id . '" placeholder="' . $this->placeholder . '">';
+
+		$output = $this->field_label() . $text_field;
+
+		return $output;
+
+	}
+
+	/**
 	 * Textarea Field
 	 */
 	private function field_textarea() {
@@ -70,6 +93,26 @@ class Ilmenite_Job_Board_Form_Fields {
 		$output = $this->field_label() . $text_field;
 
 		return $output;
+
+	}
+
+	/**
+	 * WYSIWYG Field
+	 */
+	private function field_wysiwyg() {
+
+		ob_start();
+
+		echo $this->field_label();
+
+		wp_editor( '', $this->id, array(
+			'media_buttons' => false,
+			'textarea_rows' => 5,
+			'teeny' => true,
+			'quicktags' => false,
+		) );
+
+		return ob_get_clean();
 
 	}
 
@@ -114,6 +157,20 @@ class Ilmenite_Job_Board_Form_Fields {
 
 		return $output;
 
+	}
+
+	/**
+	 * Datepicker Code
+	 */
+	public function datepicker_code() {
+
+		$script = '<script>
+			jQuery(function() {
+				jQuery( ".jquery-ui-datepicker" ).datepicker( { dateFormat: "yy-mm-dd" } );
+			});
+		</script>';
+
+		echo $script;
 	}
 
 }
