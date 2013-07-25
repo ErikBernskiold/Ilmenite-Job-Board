@@ -128,8 +128,8 @@ class Ilmenite_Job_Board_Form_Fields {
 
 		$select .= '<option selected="selected" disabled="disabled">' . __( 'Please select...', 'iljobboard' ) . '</option>';
 
-		foreach( $this->options as $option ) {
-			$select .= '<option value="' . $option->term_id . '">' . $option->name . '</option>';
+		foreach( $this->options as $key => $value ) {
+			$select .= '<option value="' . $key . '">' . $value . '</option>';
 		}
 
 		$select .= '</select>';

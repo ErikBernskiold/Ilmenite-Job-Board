@@ -134,7 +134,7 @@ class Ilmenite_Job_Board_Forms {
 					'placeholder' => '',
 					'priority'    => 25,
 					'description' => '',
-					'options'	  => get_job_taxonomy( 'iljb_job_type' ),
+					'options'	  => self::job_taxonomy_options( 'iljb_job_type' ),
 				),
 				'job_status' => array(
 					'label'       => __( 'Job Status', 'iljobboard' ),
@@ -143,7 +143,7 @@ class Ilmenite_Job_Board_Forms {
 					'placeholder' => '',
 					'priority'    => 30,
 					'description' => '',
-					'options'	  => get_job_taxonomy( 'iljb_job_status' ),
+					'options'	  => self::job_taxonomy_options( 'iljb_job_status' ),
 				),
 				'job_hours' => array(
 					'label'       => __( 'Hours of Work', 'iljobboard' ),
@@ -152,7 +152,7 @@ class Ilmenite_Job_Board_Forms {
 					'placeholder' => '',
 					'priority'    => 35,
 					'description' => '',
-					'options'	  => get_job_taxonomy( 'iljb_job_hours' ),
+					'options'	  => self::job_taxonomy_options( 'iljb_job_hours' ),
 				),
 				'qualifications' => array(
 					'label'       => __( 'Qualifications', 'iljobboard' ),
@@ -200,6 +200,21 @@ class Ilmenite_Job_Board_Forms {
 				),
 			),
 		) );
+
+	}
+
+	/**
+	 * Job Taxonomy Options
+	 */
+	private function job_taxonomy_options( $taxonomy ) {
+
+		$options = array();
+		$terms = get_job_taxonomy( $taxonomy );
+
+		foreach ( $terms as $term )
+			$options[ $term->slug ] = $term->name;
+
+		return $options;
 
 	}
 
@@ -392,8 +407,10 @@ class Ilmenite_Job_Board_Forms {
 	 */
 	protected function update_job_meta( $values ) {
 
-		// Set the job type taxonomy
-		// wp_set_object_terms( self::$job_id, array( $values['job']['job_type'] ), 'iljb_job_type', false );
+		// Go through the taxonomy fields
+		wp_set_object_terms( self::$job_id, array( $values['job']['job_type'] ), 'iljb_job_type', false );
+		wp_set_object_terms( self::$job_id, array( $values['job']['job_status'] ), 'iljb_job_status', false );
+		wp_set_object_terms( self::$job_id, array( $values['job']['job_hours'] ), 'iljb_job_hours', false );
 
 		// Go through all of the fields here...
 		update_post_meta( self::$job_id, 'iljb_company_id', $_POST['company_id'] );
