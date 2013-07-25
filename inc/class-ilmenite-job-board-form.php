@@ -26,7 +26,7 @@ abstract class Ilmenite_Job_Board_Form {
 	public static function display_errors() {
 
 		foreach ( self::$errors as $error )
-			echo '<div class="job-board-message error-message"> ' . $error . ' </div>';
+			echo iljb_get_message( 'error', $error );
 
 	}
 
