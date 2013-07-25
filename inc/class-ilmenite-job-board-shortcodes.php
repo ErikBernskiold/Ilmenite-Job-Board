@@ -84,6 +84,28 @@ class Ilmenite_Job_Board_Shortcodes {
 
 	}
 
+	/**
+	 * Submit Job Shortcode
+	 *
+	 * Shortcode for displaying the job submission form
+	 */
+	public function submit_form( $atts ) {
+
+		ob_start();
+
+		// Stop the display here if the user isn't logged in.
+		if ( ! is_user_logged_in() )
+			return iljb_get_message( 'error', __( 'You must be logged in to submit a new job.', 'iljobboard' ) );
+
+?>
+
+<?php
+
+		// Return the output buffered content wrapped in a div
+		return '<div class="job-submission">' . ob_get_clean() . '</div>';
+
+	}
+
 }
 
 new Ilmenite_Job_Board_Shortcodes();
