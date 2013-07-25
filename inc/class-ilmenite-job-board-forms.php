@@ -41,6 +41,11 @@ class Ilmenite_Job_Board_Forms {
 			} else {
 				self::save_job( $values['job']['job_title'], $values['job']['job_description'] );
 				self::update_job_meta( $values );
+
+				echo iljb_get_message( 'success', __( 'Your job listing has been successfully submitted to us.', 'iljobboard' ) );
+
+				// Stop outputting the form and redirect...
+				return;
 			}
 
 		}
@@ -388,9 +393,10 @@ class Ilmenite_Job_Board_Forms {
 	protected function update_job_meta( $values ) {
 
 		// Set the job type taxonomy
-		wp_set_object_terms( self::$job_id, array( $values['job']['job_type'] ), 'iljb_job_type', false );
+		// wp_set_object_terms( self::$job_id, array( $values['job']['job_type'] ), 'iljb_job_type', false );
 
 		// Go through all of the fields here...
+		update_post_meta( self::$job_id, 'iljb_company_id', $_POST['company_id'] );
 		update_post_meta( self::$job_id, 'iljb_company_id', $values['job']['company_id'] );
 		update_post_meta( self::$job_id, 'iljb_expiry_date', $values['job']['expiry_date'] );
 		update_post_meta( self::$job_id, 'iljb_start_date', $values['job']['start_date'] );
