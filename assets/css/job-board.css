@@ -32,7 +32,8 @@
 				}
 
 	/* Job Listing: Columns */
-	.jobs-company-logo {
+	.jobs-company-logo,
+	.jobs-actions {
 		width: 15%;
 	}
 
