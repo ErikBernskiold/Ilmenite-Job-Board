@@ -55,7 +55,7 @@ class Ilmenite_Job_Board_Forms {
 
 ?>
 
-		<form action="<?php the_permalink(); ?>" method="post">
+		<form action="<?php the_permalink(); ?>" method="post" name="submit_job_form" id="submit_job_form">
 
 			<?php $this->display_fields( 'job' ); ?>
 
