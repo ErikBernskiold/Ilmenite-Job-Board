@@ -66,6 +66,12 @@ class Ilmenite_Job_Board_Forms {
 				<input type="submit" value="<?php _e('Submit', 'iljobboard'); ?>" class="button success" name="submit_job" id="submit_job">
 			</div>
 
+			<script type="text/javascript">
+				jQuery(document).ready(function(){
+					jQuery("#submit_job_form").validationEngine();
+				});
+			</script>
+
 		</form>
 
 <?php

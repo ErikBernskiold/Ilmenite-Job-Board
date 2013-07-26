@@ -14,6 +14,10 @@ class Ilmenite_Job_Board_Form_Fields {
 	private static $options;
 	private static $edit;
 
+	private static $required_content;
+	private static $required_class;
+	private static $required_label;
+
 	/**
 	 * Display Field
 	 */
@@ -28,6 +32,12 @@ class Ilmenite_Job_Board_Form_Fields {
 		$this->options = $field_options;
 		$this->edit = $field_edit;
 
+		if ( $this->required ) {
+			$this->required_content = 'data-validation-engine="validate[required]"';
+			$this->required_class = 'required';
+			$this->required_label = '<abbr title="' . __( 'Required', 'iljobboard' ) . '" class="required-indicator">*</abbr>';
+		}
+
 		// If the field type doesn't have a function, quit here.
 		if( ! method_exists( $this, 'field_' . $this->type ) )
 			return;
@@ -41,7 +51,7 @@ class Ilmenite_Job_Board_Form_Fields {
 	 */
 	private function field_label() {
 
-		$label = '<label for="' . $this->id . '" class="job-submit-label">' . $this->label . '</label>';
+		$label = '<label for="' . $this->id . '" class="job-submit-label">' . $this->label . $this->required_label . '</label>';
 
 		return $label;
 
@@ -52,7 +62,7 @@ class Ilmenite_Job_Board_Form_Fields {
 	 */
 	private function field_text() {
 
-		$text_field = '<input type="text" id="' . $this->id . '" name="' . $this->id . '" placeholder="' . $this->placeholder . '">';
+		$text_field = '<input type="text" id="' . $this->id . '" name="' . $this->id . '" ' . $this->required_content . ' placeholder="' . $this->placeholder . '">';
 
 		$output = $this->field_label() . $text_field;
 
@@ -75,7 +85,7 @@ class Ilmenite_Job_Board_Form_Fields {
 		// Add the datepicker code
 		add_action( 'wp_footer', array( $this, 'datepicker_code' ), 20 );
 
-		$text_field = '<input type="text" class="jquery-ui-datepicker" id="' . $this->id . '" name="' . $this->id . '" placeholder="' . $this->placeholder . '">';
+		$text_field = '<input type="text" class="jquery-ui-datepicker" id="' . $this->id . '" name="' . $this->id . '" ' . $this->required_content . ' placeholder="' . $this->placeholder . '">';
 
 		$output = $this->field_label() . $text_field;
 
@@ -88,7 +98,7 @@ class Ilmenite_Job_Board_Form_Fields {
 	 */
 	private function field_textarea() {
 
-		$text_field = '<textarea id="' . $this->id . '" name="' . $this->id . '" placeholder="' . $this->placeholder . '"></textarea>';
+		$text_field = '<textarea id="' . $this->id . '" name="' . $this->id . '" ' . $this->required_content . ' placeholder="' . $this->placeholder . '"></textarea>';
 
 		$output = $this->field_label() . $text_field;
 
@@ -124,7 +134,7 @@ class Ilmenite_Job_Board_Form_Fields {
 	 */
 	private function field_select() {
 
-		$select = '<select id="' . $this->id . '" name="' . $this->id . '">';
+		$select = '<select id="' . $this->id . '" name="' . $this->id . '" ' . $this->required_content . '>';
 
 		$select .= '<option selected="selected" disabled="disabled">' . __( 'Please select...', 'iljobboard' ) . '</option>';
 

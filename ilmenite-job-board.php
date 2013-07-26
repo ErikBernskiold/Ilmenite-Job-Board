@@ -104,9 +104,11 @@ class Ilmenite_Job_Board {
 	 */
 	public function stylesheets() {
 
-		wp_register_style( 'job-board', IL_JOB_BOARD_PLUGIN_URL . '/assets/css/job-board.css' );
+		wp_register_style( 'job-board', IL_JOB_BOARD_PLUGIN_URL . '/assets/css/job-board.css', false, IL_JOB_BOARD_VERSION, 'all' );
+		wp_register_style( 'jquery-validationEngine', IL_JOB_BOARD_PLUGIN_URL . '/assets/css/validationEngine.jquery.css', false, '2.6.1', 'all'  );
 
 		wp_enqueue_style( 'job-board' );
+		wp_enqueue_style( 'jquery-validationEngine' );
 
 	}
 
@@ -115,8 +117,14 @@ class Ilmenite_Job_Board {
 	 */
 	public function scripts() {
 
+		wp_register_script( 'jquery-validationEngine', IL_JOB_BOARD_PLUGIN_URL . '/assets/js/jquery.validationEngine.js', array( 'jquery' ), '2.6.1', false );
+		wp_register_script( 'jquery-validationEngine-en', IL_JOB_BOARD_PLUGIN_URL . '/assets/js/jquery.validationEngine-en.js', array( 'jquery' ), '2.6.1', false );
+
 		// Make sure jQuery is loaded
 		wp_enqueue_script( 'jquery' );
+
+		wp_enqueue_script( 'jquery-validationEngine' );
+		wp_enqueue_script( 'jquery-validationEngine-en' );
 
 	}
 
