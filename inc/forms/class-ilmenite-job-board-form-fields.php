@@ -148,7 +148,7 @@ class Ilmenite_Job_Board_Form_Fields {
 		$checkboxes = '';
 
 		foreach( $this->options as $option ) {
-			$checkboxes .= '<input type="checkbox" name="' . $option . '" id="' . $option . '"> <label for="' . $option . '" class="job-checkbox-label">' . $option . '</label>';
+			$checkboxes .= '<input type="checkbox" name="' . $this->id . '[]" id="' . $option . '" value="' . $option . '"> <label for="' . $option . '" class="job-checkbox-label">' . $option . '</label>';
 		}
 
 		$output = '<span class="job-checkbox-group-label">' . $this->label . '</span>' . $checkboxes;

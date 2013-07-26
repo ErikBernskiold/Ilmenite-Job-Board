@@ -304,7 +304,18 @@ class Ilmenite_Job_Board_Forms {
 
 		foreach ( self::$fields as $group_key => $fields ) {
 			foreach ( $fields as $key => $field ) {
-				$values[ $group_key ][ $key ] = isset( $_POST[ $key ] ) ? stripslashes( $_POST[ $key ] ) : '';
+
+				// If what we submitted is an array, we need to process differently.
+				if ( isset( $_POST[ $key ] ) && is_array( $_POST[ $key ] ) ) {
+
+					foreach ( $_POST[ $key ] as $k => $value )
+						$array_values[ $k ] = stripslashes( $value );
+
+					$values[ $group_key ][ $key ] = implode( ',', $array_values );
+
+				} else {
+					$values[ $group_key ][ $key ] = isset( $_POST[ $key ] ) ? stripslashes( $_POST[ $key ] ) : '';
+				}
 
 				switch ( $key ) {
 					case 'textarea':
