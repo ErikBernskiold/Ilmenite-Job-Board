@@ -52,6 +52,9 @@ class Ilmenite_Job_Board {
 		// Add Stylesheets
 		add_action( 'wp_enqueue_scripts', array( $this, 'stylesheets' ) );
 
+		// Add Scripts
+		add_action( 'wp_enqueue_scripts', array( $this, 'scripts' ) );
+
 		// Add plugin updater
 		add_action( 'init', array( $this, 'plugin_update' ) );
 	}
@@ -106,6 +109,17 @@ class Ilmenite_Job_Board {
 		wp_enqueue_style( 'job-board' );
 
 	}
+
+	/**
+	 * Load Scripts
+	 */
+	public function scripts() {
+
+		// Make sure jQuery is loaded
+		wp_enqueue_script( 'jquery' );
+
+	}
+
 
 }
 
