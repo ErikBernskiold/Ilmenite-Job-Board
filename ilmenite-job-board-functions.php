@@ -48,3 +48,27 @@ function get_job_taxonomy( $taxonomy = null ) {
 
 }
 endif;
+
+if ( ! function_exists( 'get_job_board_login' ) ) :
+/**
+ * Job Board Login Form
+ *
+ * Creates a login form/page to display when login is required.
+ */
+function get_job_board_login() {
+
+	// Define output variable
+	$output = '';
+
+	$login_form = wp_login_form(array(
+		'echo' => false,
+	));
+
+	$output .= '<h3>' . __( 'Login', 'iljobboard' ) . '</h3>';
+	$output .= '<p class="job-login-message">' . __( 'To access this section, you need to be logged in.', 'iljobboard' ) . '</p>';
+	$output .= $login_form;
+
+	return $output;
+
+}
+endif;
