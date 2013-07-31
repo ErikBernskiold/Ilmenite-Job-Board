@@ -37,6 +37,10 @@
 		width: 15%;
 	}
 
+		.jobs-company-logo img {
+			width: 90%;
+		}
+
 	.jobs-position-info {
 		width: 43%;
 	}

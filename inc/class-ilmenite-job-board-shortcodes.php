@@ -65,7 +65,9 @@ class Ilmenite_Job_Board_Shortcodes {
 					<li>
 						<ul>
 							<li class="jobs-company-logo">
-								Logo
+								<?php if ( get_user_meta( get_the_author_meta( 'ID' ), 'company_logo', true ) ) : ?>
+								<a href="<?php the_permalink(); ?>"><img src="<?php echo get_user_meta( get_the_author_meta( 'ID' ), 'company_logo', true ); ?>" alt="<?php echo get_user_meta( get_the_author_meta( 'ID' ), 'company_name', true ); ?>"></a>
+								<?php endif; ?>
 							</li>
 							<li class="jobs-position-info">
 								<span class="jobs-position-title"><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></span>

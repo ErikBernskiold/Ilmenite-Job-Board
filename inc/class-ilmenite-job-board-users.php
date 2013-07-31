@@ -104,6 +104,7 @@ class Ilmenite_Job_Board_Users {
 		update_user_meta( $user_id, 'company_phone', $_POST['company_phone'] );
 		update_user_meta( $user_id, 'company_fax', $_POST['company_fax'] );
 		update_user_meta( $user_id, 'company_website', $_POST['company_website'] );
+		update_user_meta( $user_id, 'company_logo', $_POST['company_logo'] );
 
 	}
 
