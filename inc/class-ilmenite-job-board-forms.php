@@ -79,6 +79,61 @@ class Ilmenite_Job_Board_Forms {
 
 	}
 
+	public function application_form() {
+
+		ob_start();
+
+		if ( isset( $_POST['submitted'] ) ) {
+
+			$values = $this->get_form_post_data();
+
+			// Check that our nonce verifies
+			if ( empty($_POST) || !wp_verify_nonce($_POST['submit_application_nonce'],'submit_application_nonce') ) {
+				echo iljb_get_message( 'error', __( 'There has been an error in the submission: The nonce did not verify.', 'iljobboard' ) );
+				exit;
+
+			// Check if any form field doesn't validate
+			} elseif ( is_wp_error( ( $return = self::validate_form_fields( $values ) ) ) ) {
+				echo iljb_get_message( 'error', $return->get_error_message() );
+
+			// If we don't have any validation or nonce errors, let's submit the form.
+			} else {
+
+				// Do stuff!
+
+				echo iljb_get_message( 'success', __( 'You have successfully applied for the job.', 'iljobboard' ) );
+
+				// Stop outputting the form and redirect...
+				return;
+			}
+
+		}
+
+?>
+
+		<form action="<?php the_permalink(); ?>" method="post" name="submit_application_form" id="submit_application_form">
+
+			<?php $this->display_fields( 'job_application' ); ?>
+
+			<div class="form-actions">
+				<?php wp_nonce_field( 'submit_application_nonce', 'submit_application_nonce' ); ?>
+				<input type="hidden" name="submitted" id="submitted" value="true">
+				<input type="submit" value="<?php _e('Submit', 'iljobboard'); ?>" class="button success" name="submit_job" id="submit_job">
+			</div>
+
+			<script type="text/javascript">
+				jQuery(document).ready(function(){
+					jQuery("#submit_application_form").validationEngine();
+				});
+			</script>
+
+		</form>
+
+<?php
+		return ob_get_clean();
+
+	}
+
 	/**
 	 * Fields Function
 	 *
@@ -163,6 +218,40 @@ class Ilmenite_Job_Board_Forms {
 					'description' => '',
 					'options'	  => self::job_taxonomy_options( 'iljb_job_hours' ),
 				),
+				'community' => array(
+					'label'       => __( 'Community', 'iljobboard' ),
+					'type'        => 'select',
+					'required'    => true,
+					'placeholder' => '',
+					'priority'    => 36,
+					'description' => '',
+					'options'	  => array(
+						'Midland & area',
+						'Parry Sound & area',
+						'Huntsville & area',
+						'Other',
+					),
+				),
+				'sector' => array(
+					'label'       => __( 'Sector', 'iljobboard' ),
+					'type'        => 'select',
+					'required'    => true,
+					'placeholder' => '',
+					'priority'    => 37,
+					'description' => '',
+					'options'	  => array(
+						'1. Management',
+						'2. Business, Finance, Administration',
+						'3. Engineers, Architects, IT, Natural Science',
+						'4. Health',
+						'5. Social, Legal, Education, Government, Religion',
+						'6. Art, Culture, Recreation & Sport',
+						'7. Sales, Service',
+						'8. Trades, Transport, Construction',
+						'9. Farming, Fishing & Natural Resources',
+						'10. Processing, Manufacturing, Utilities',
+					),
+				),
 				'qualifications' => array(
 					'label'       => __( 'Qualifications', 'iljobboard' ),
 					'type'        => 'textarea',
@@ -204,6 +293,26 @@ class Ilmenite_Job_Board_Forms {
 					'required'    => false,
 					'placeholder' => '',
 					'priority'    => 55,
+					'description' => '',
+					'options'	  => false,
+				),
+			),
+			'job_application' => array(
+				'first_name' => array(
+					'label'       => __( 'First Name', 'iljobboard' ),
+					'type'        => 'text',
+					'required'    => true,
+					'placeholder' => '',
+					'priority'    => 1,
+					'description' => '',
+					'options'	  => false,
+				),
+				'last_name' => array(
+					'label'       => __( 'Last Name', 'iljobboard' ),
+					'type'        => 'text',
+					'required'    => true,
+					'placeholder' => '',
+					'priority'    => 1,
 					'description' => '',
 					'options'	  => false,
 				),

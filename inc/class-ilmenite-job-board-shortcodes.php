@@ -17,6 +17,9 @@ class Ilmenite_Job_Board_Shortcodes {
 		// Adds the job submission form shortcode
 		add_shortcode( 'ilmenite_submit_job', array( $this, 'submit_form' ) );
 
+		// Adds the job application form shortcode
+		add_shortcode( 'ilmenite_job_application_form', array( $this, 'application_form' ) );
+
 		// Adds the job submission form shortcode
 		add_shortcode( 'ilmenite_job_dashboard', array( $this, 'employer_dashboard' ) );
 
@@ -98,6 +101,17 @@ class Ilmenite_Job_Board_Shortcodes {
 	public function submit_form( $atts ) {
 
 		return $GLOBALS['ilmenite_job_board']->forms->submit_form();
+
+	}
+
+	/**
+	 * Job Application Shortcode
+	 *
+	 * Shortcode for displaying the job application form
+	 */
+	public function application_form( $atts ) {
+
+		return $GLOBALS['ilmenite_job_board']->forms->application_form();
 
 	}
 
