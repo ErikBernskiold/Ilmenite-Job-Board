@@ -77,6 +77,14 @@ class Ilmenite_Job_Board_Users {
 						<input type="url" name="company_website" id="company_website" value="<?php echo esc_attr( get_the_author_meta( 'company_website', $user->ID ) ); ?>" class="regular-text" /><br />
 					</td>
 				</tr>
+				<tr>
+					<th>
+						<label for="company_logo"><?php _e('Logo', 'iljobboard'); ?></label>
+					</th>
+					<td>
+						<input type="text" name="company_logo" id="company_logo" value="<?php echo esc_attr( get_the_author_meta( 'company_logo', $user->ID ) ); ?>" class="regular-text" /><br />
+					</td>
+				</tr>
 			</table>
 		<?php
 	}
